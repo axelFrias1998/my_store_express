@@ -1,0 +1,29 @@
+{
+  "name": "my_store",
+  "version": "1.0.0",
+  "description": "Código de API REST para una tienda con Express.js. Curso Platzi.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "start": "node index.js",
+    "lint": "eslint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/axelFrias1998/my_store_express.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/axelFrias1998/my_store_express/issues"
+  },
+  "homepage": "https://github.com/axelFrias1998/my_store_express#readme",
+  "devDependencies": {
+    "eslint": "^8.3.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "nodemon": "^2.0.15",
+    "prettier": "^2.5.0"
+  }
+}

@@ -1,0 +1,7 @@
+npm init -y 																											//Configuración por defecto. Resulta en la creación de package.json
+gitignore.io 																											//Página con plantillas de ignore
+Extensión de editor config 																								//Para formatear el editor de texto
+npm i nodemon eslint eslint-config-prettier eslint-plugin-prettier prettier -D											//Para que el entorno funcione, se necesitan instalar dependencias de desarrollo
+	i 		//Significa installar
+	-D 		//Significa que son dependencias de desarrollo
+npm run <cualquier propiedad de script> dev																				//Se ejecuta nodemon
