@@ -3,15 +3,45 @@ const express = require("express");
 const app = express();
 const port = 3000;
 
-app.get('/', (request, response) => {
+app.get("/", (request, response) => {
 	response.send("Hello world from Express!");
 });
 
-app.get('/test', (request, response) => {
-	response.send("Hola test");
+app.get("/products", (request, response) => {
+	response.json([
+		{
+			name: "Calzón",
+			price: 100
+		},
+		{
+			name: "Tanga",
+			price: 20
+		},
+		{
+			name: "Cruz católica",
+			price: 200
+		}
+	]);
 });
 
-app.get('/mi_flaquita', (request, response) => {
+app.get("/products/:id", (request, response) => {
+	const { id } = request.params;
+	response.json({
+			id,
+			name: "Calzón",
+			price: 100
+		});
+});
+
+app.get("/categories/:categoryId/products/:productId", (request, response) => {
+	const { categoryId, productId } = request.params;
+	response.json({
+		categoryId,
+		productId
+	});
+});
+
+app.get("/mi_flaquita", (request, response) => {
 	response.json({
 		latigo: "Lizeth",
 		enculado: "Axel",
