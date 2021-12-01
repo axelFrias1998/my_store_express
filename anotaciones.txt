@@ -5,3 +5,5 @@ npm i nodemon eslint eslint-config-prettier eslint-plugin-prettier prettier -D		
 	i 		//Significa installar
 	-D 		//Significa que son dependencias de desarrollo
 npm run <cualquier propiedad de script> dev																				//Se ejecuta nodemon
+npm i express																											//Para instalar express
+
