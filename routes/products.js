@@ -1,25 +1,33 @@
 const express = require("express");
-const faker = require("faker");
+const ProductsService = require("../services/products");
 
 const router = express.Router();
+const service = new ProductsService();
 
 router.get("/", (request, response) => {
-	const { size } = request.query;
-	const limit = size || 100;
-	const products = [];
-	for (let i = 0; i < limit; i++) {
-		products.push({
-			name: faker.commerce.productName(),
-			price: parseInt(faker.commerce.price()),
-			image: faker.image.imageUrl()
+	//?size=100
+	//const { size } = request.query;
+	const products = service.find();
+	response.status(200).json(products);
+});
+
+//Todos los parámetros enviados o por query se reciben por string
+router.get("/:id", (request, response) => {
+	const { id } = request.params;
+	const product = service.findOne(id);
+	if(product){
+		response.status(200).json(product);
+	}
+	else{
+		response.status(404).json({
+			message: "Not found"
 		});
 	}
-	response.json(products);
 });
 
 router.post("/", (request, response) => {
 	const body = request.body;
-	response.json({
+	response.status(201).json({
 		message: "Created",
 		data: body
 	});
@@ -57,15 +65,6 @@ router.delete("/:id", (request, response) => {
 //router.get("/filter", (request, response) => {
 //	response.send("Filter");
 //});
-
-router.get("/:id", (request, response) => {
-	const { id } = request.params;
-	response.json({
-			id,
-			name: "Calzón",
-			price: 100
-		});
-});
 
 //Exporta el módulo de router
 module.exports = router;

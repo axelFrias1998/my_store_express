@@ -8,6 +8,8 @@ npm run <cualquier propiedad de script> dev																				//Se ejecuta node
 npm i express																											//Para instalar express
 REST (Representational State Transfer)
 npm i faker
-https://http.cat/																							//Genera data fake
+https://http.cat/
+Leer the clean architecture
+Servicios son lógica de negocio, controladores sólo movimiento de información																						//Genera data fake
 
 
