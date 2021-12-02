@@ -17,10 +17,46 @@ router.get("/", (request, response) => {
 	response.json(products);
 });
 
-//Todo lo específico (filter) va antes de lo dinámico, para evitar confusiones de routing
-router.get("/filter", (request, response) => {
-	response.send("Filter");
+router.post("/", (request, response) => {
+	const body = request.body;
+	response.json({
+		message: "Created",
+		data: body
+	});
 });
+
+router.put("/:id", (request, response) => {
+	const { id } = request.params;
+	const body = request.body;
+	response.json({
+		message: "Update",
+		data: body,
+		id
+	});
+});
+
+router.patch("/:id", (request, response) => {
+	const { id } = request.params;
+	const body = request.body;
+	response.json({
+		message: "Update partial",
+		data: body,
+		id
+	});
+});
+
+router.delete("/:id", (request, response) => {
+	const { id } = request.params;
+	response.json({
+		message: "Delete",
+		id
+	});
+});
+
+//Todo lo específico (filter) va antes de lo dinámico, para evitar confusiones de routing
+//router.get("/filter", (request, response) => {
+//	response.send("Filter");
+//});
 
 router.get("/:id", (request, response) => {
 	const { id } = request.params;

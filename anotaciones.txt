@@ -7,6 +7,7 @@ npm i nodemon eslint eslint-config-prettier eslint-plugin-prettier prettier -D		
 npm run <cualquier propiedad de script> dev																				//Se ejecuta nodemon
 npm i express																											//Para instalar express
 REST (Representational State Transfer)
-npm i faker																												//Genera data fake
+npm i faker
+https://http.cat/																							//Genera data fake
 
 
