@@ -27,38 +27,31 @@ router.get("/:id", (request, response) => {
 
 router.post("/", (request, response) => {
 	const body = request.body;
+	const newProduct = service.create(body);
 	response.status(201).json({
 		message: "Created",
-		data: body
+		data: newProduct
 	});
 });
 
 router.put("/:id", (request, response) => {
 	const { id } = request.params;
 	const body = request.body;
-	response.json({
-		message: "Update",
-		data: body,
-		id
-	});
+	const product = service.update(id, body);
+	response.json(product);
 });
 
 router.patch("/:id", (request, response) => {
 	const { id } = request.params;
 	const body = request.body;
-	response.json({
-		message: "Update partial",
-		data: body,
-		id
-	});
+	const product = service.update(id, body);
+	response.json(product);
 });
 
 router.delete("/:id", (request, response) => {
 	const { id } = request.params;
-	response.json({
-		message: "Delete",
-		id
-	});
+	const result = service.delete(id);
+	response.json(result);
 });
 
 //Todo lo específico (filter) va antes de lo dinámico, para evitar confusiones de routing
