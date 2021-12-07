@@ -11,5 +11,6 @@ npm i faker
 https://http.cat/
 Leer the clean architecture
 Servicios son lógica de negocio, controladores sólo movimiento de información																						//Genera data fake
-
+Middlewares de error se definen después del routing en index.js
+npim i @hapi/Boom LIBRERÍA
 
