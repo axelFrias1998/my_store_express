@@ -1,5 +1,7 @@
 const express = require("express");
 const ProductsService = require("../services/products");
+const validatorHandler = require("../middlewares/validator.handler");
+const { createProductSchema, updateProductSchema, getProductSchema } = require("../schemas/product.schema");
 
 const router = express.Router();
 const service = new ProductsService();
@@ -12,7 +14,7 @@ router.get("/", async (request, response) => {
 });
 
 //Todos los parámetros enviados o por query se reciben por string
-router.get("/:id", async (request, response, next) => {
+router.get("/:id", validatorHandler(getProductSchema, "params"), async (request, response, next) => {
 	try {
 		const { id } = request.params;
 		const product = await service.findOne(id);
@@ -40,7 +42,7 @@ function(request, result, next){
 	}
 }*/
 
-router.post("/", async (request, response) => {
+router.post("/", validatorHandler(createProductSchema, "body"), async (request, response) => {
 	const body = request.body;
 	const newProduct = await service.create(body);
 	response.status(201).json({
@@ -49,7 +51,8 @@ router.post("/", async (request, response) => {
 	});
 });
 
-router.put("/:id", async (request, response, next) => {
+//Middleware de validación secuencial
+router.put("/:id", validatorHandler(getProductSchema, "params"), validatorHandler(updateProductSchema, "body"), async (request, response, next) => {
 	try {
 		const { id } = request.params;
 		const body = request.body;
@@ -60,7 +63,7 @@ router.put("/:id", async (request, response, next) => {
 	}
 });
 
-router.patch("/:id", async (request, response, next) => {
+router.patch("/:id", validatorHandler(getProductSchema, "params"), validatorHandler(updateProductSchema, "body"), async (request, response, next) => {
 	try {
 		const { id } = request.params;
 		const body = request.body;
@@ -71,10 +74,14 @@ router.patch("/:id", async (request, response, next) => {
 	}
 });
 
-router.delete("/:id", async (request, response) => {
-	const { id } = request.params;
-	const result = await service.delete(id);
-	response.json(result);
+router.delete("/:id", validatorHandler(getProductSchema, "params"), async (request, response, next) => {
+	try {
+		const { id } = request.params;
+		const result = await service.delete(id);
+		response.json(result);
+	} catch (error) {
+		next(error);
+	}
 });
 
 //Todo lo específico (filter) va antes de lo dinámico, para evitar confusiones de routing
